@@ -34,7 +34,7 @@ pipeline{
       groupId: 'myGroupId',
       version: '1.0-SNAPSHOT',
       repository: 'maven-snapshots',
-      credentialsId: 'nexuscredentails',
+      credentialsId: 'nexuscredentials',
       artifacts: [
       [artifactId: 'maven-project',
       classifier: '',
