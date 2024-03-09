@@ -14,13 +14,6 @@ pipeline{
                 sh 'mvn clean package'
             }
          }
-		post {
-               always {
-                 junit '*/target/surefire-reports/TEST-*.xml'
-         }
-         }
-         } 
-		 
         stage('SonarQube analysis') {
 //    def scannerHome = tool 'SonarScanner 4.0';
         steps{
@@ -41,7 +34,7 @@ pipeline{
       groupId: 'myGroupId',
       version: '1.0-SNAPSHOT',
       repository: 'maven-snapshots',
-      credentialsId: 'nexuscredentials',
+      credentialsId: 'nexuscredentails',
       artifacts: [
       [artifactId: 'maven-project',
       classifier: '',
@@ -52,7 +45,7 @@ pipeline{
         }
         stage ('Deploy to Prod'){
      steps {
-        sh 'scp -o StrictHostKeyChecking=no /root/Sonar-Project/webapp/target/webapp.war root@15.206.117.185:/opt/apache-tomcat-8.0.52/webapps'
+        sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war root@15.206.117.185:/opt/apache-tomcat-8.0.52/webapps'
            }
    }
 }    
